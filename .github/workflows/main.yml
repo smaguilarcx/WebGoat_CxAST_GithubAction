@@ -16,7 +16,8 @@ jobs:
       uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.1 # GitHub Action version
       with:
         project: Webgoat_GithubAction
-        base_uri:  ${{ secrets.BASE_URI }}
+        ast_api_url: ${{ secrets.AST_API_URL }} 
+        ast_webapp_url: ${{ secrets.AST_WEBAPP_URL }} 
         ast_client_id: ${{ secrets.CX_CLIENT_ID }}
         ast_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
         break_build: false
