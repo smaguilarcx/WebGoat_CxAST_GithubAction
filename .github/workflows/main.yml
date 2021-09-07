@@ -23,7 +23,7 @@ jobs:
         break_build: false
         scanners: ast
         bug_tracker: Sarif
-        params: --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref }} ${{ secrets.ADDITIONAL_PARAMS }}
+        params: --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref }} 
     - name: Upload SARIF file
       uses: github/codeql-action/upload-sarif@v1
       with:
