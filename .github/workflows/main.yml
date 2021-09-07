@@ -14,8 +14,8 @@ jobs:
         uses: checkmarxDev/ast-github-action@master #Github Action version
         with:
           project_name: Webgoat_GithubAction
-          cx_tenant: smaguilarcx
-          base_uri: https://eu.ast.checkmarx.net # https://ast-master.dev.cxast.net #
+          cx_tenant: ${{ secrets.CX_TENANT }}
+          base_uri: ${{ secrets.BASE_URI }}
           cx_client_id: ${{ secrets.CX_CLIENT_ID }}
           cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
-          scan_types: sast,kics,sca
+          scan_types:  ${{ secrets.SCAN_TYPES }}
