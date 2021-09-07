@@ -1,0 +1,29 @@
+name: Checkmarx AST Scan
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Checkmarx CxFlow Action
+      uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.1 # GitHub Action version
+      with:
+        project: Webgoat_GithubAction
+        base_uri:  ${{ secrets.BASE_URI }}
+        ast_client_id: ${{ secrets.CX_CLIENT_ID }}
+        ast_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
+        break_build: false
+        scanners: ast
+        bug_tracker: Sarif
+        params: --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref }} ${{ secrets.ADDITIONAL_PARAMS }}
+    - name: Upload SARIF file
+      uses: github/codeql-action/upload-sarif@v1
+      with:
+        sarif_file: cx.sarif
