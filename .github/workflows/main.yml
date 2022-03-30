@@ -3,6 +3,7 @@ on:
   push:
     branches:      
       - master
+      - main
       
 jobs:
   build:
@@ -11,7 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Checkmarx AST CLI Action
-        uses: checkmarxDev/ast-github-action@master #Github Action version
+        uses: checkmarxDev/ast-github-action@main #Github Action version
         with:
           project_name: Webgoat_GithubAction
           cx_tenant: ${{ secrets.CX_TENANT }}
